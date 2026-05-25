@@ -25,7 +25,9 @@ jobs:
       - name: Write signing key
         run: |
           mkdir -p ~/.gradle
-          echo "${{ secrets.SIGNING_KEY }}" > ~/.gradle/signing-key.asc
+          printf '%s' "$SIGNING_KEY" > ~/.gradle/signing-key.asc
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
 
       - name: Publish to Maven Central
         run: ./gradlew publishToMavenCentral --no-configuration-cache
