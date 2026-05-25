@@ -187,11 +187,20 @@ The `.github/workflows/release.yml` workflow triggers on version tags or GitHub 
 | `MAVEN_CENTRAL_USERNAME` | Sonatype token username |
 | `MAVEN_CENTRAL_PASSWORD` | Sonatype token password |
 
-Then create a release:
+Then create a release. Either push a version tag (which triggers the Maven Central workflow but doesn't create a visible GitHub Release):
 
 ```bash
 git tag v0.2.0 && git push origin v0.2.0
 ```
+
+Or create a full GitHub Release via the CLI (which also triggers the workflow):
+
+```bash
+git tag v0.2.0 && git push origin v0.2.0
+gh release create v0.2.0 --title "v0.2.0" --notes "release notes here"
+```
+
+Or create a release manually at `https://github.com/mahyarmlk/compose-daisy-ui/releases/new`.
 
 After validation on [central.sonatype.com/publishing/deployments](https://central.sonatype.com/publishing/deployments), click **Publish** to release the artifacts (propagation takes 15-30 minutes).
 
