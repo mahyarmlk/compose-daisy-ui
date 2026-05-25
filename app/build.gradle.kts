@@ -2,7 +2,7 @@ plugins {
   kotlin("multiplatform")
   kotlin("plugin.compose")
   id("org.jetbrains.compose")
-  id("io.github.compose-daisy-ui.webpack")
+  id("io.github.mahyarmlk.webpack")
 }
 
 kotlin {

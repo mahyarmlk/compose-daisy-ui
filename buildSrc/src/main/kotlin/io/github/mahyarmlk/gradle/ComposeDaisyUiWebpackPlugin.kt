@@ -1,4 +1,4 @@
-package composedaisyui.gradle
+package io.github.mahyarmlk.gradle
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

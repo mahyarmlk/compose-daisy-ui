@@ -6,28 +6,37 @@ A Compose-first component library for Kotlin/JS Compose HTML, powered by daisyUI
 
 - `:compose-daisyui-core` provides daisyUI class tokens, theme names, Tailwind/daisyUI CSS config helpers, and lower-level Compose HTML wrappers.
 - `:compose-daisyui` provides the high-level Compose-style component layer on top of core.
-- `buildSrc` provides `io.github.compose-daisy-ui.webpack`, a small Gradle plugin that generates the Kotlin/JS Webpack bridge for Tailwind CSS 4 and daisyUI.
+- `buildSrc` provides `io.github.mahyarmlk.webpack`, a small Gradle plugin that generates the Kotlin/JS Webpack bridge for Tailwind CSS 4 and daisyUI.
 
 ## Status
 
 This project is pre-1.0. APIs are intended to be small, typed, and Compose-like,
 but they may still evolve as component coverage matures.
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.mahyarmlk/compose-daisyui-js)](https://central.sonatype.com/artifact/io.github.mahyarmlk/compose-daisyui-js)
+
 ## Modules
 
-Use `:compose-daisyui` for app work. It exports `:compose-daisyui-core` transitively, so token escape hatches remain available:
+Available on Maven Central as `io.github.mahyarmlk:compose-daisyui-js` and `io.github.mahyarmlk:compose-daisyui-core-js`.
+
+Use `compose-daisyui-js` for app work. It exports `compose-daisyui-core-js` transitively, so token escape hatches remain available:
 
 ```kotlin
+// build.gradle.kts
+repositories {
+  mavenCentral()
+}
+
 dependencies {
-  implementation("io.github.compose-daisy-ui:compose-daisyui:0.1.0")
+  implementation("io.github.mahyarmlk:compose-daisyui-js:0.1.0")
 }
 ```
 
-Use `:compose-daisyui-core` when you only want tokens, themes, CSS helpers, and thin HTML wrappers:
+Use `compose-daisyui-core-js` when you only want tokens, themes, CSS helpers, and thin HTML wrappers:
 
 ```kotlin
 dependencies {
-  implementation("io.github.compose-daisy-ui:compose-daisyui-core:0.1.0")
+  implementation("io.github.mahyarmlk:compose-daisyui-core-js:0.1.0")
 }
 ```
 
@@ -128,7 +137,7 @@ App modules do not need to carry a handwritten `webpack.config.d` file. Apply th
 
 ```kotlin
 plugins {
-  id("io.github.compose-daisy-ui.webpack")
+  id("io.github.mahyarmlk.webpack")
 }
 ```
 
@@ -137,12 +146,54 @@ The plugin generates the Webpack bridge that resolves Tailwind plugins from Kotl
 ## Development
 
 ```bash
-./gradlew :app:jsBrowserDevelopmentRun
-./gradlew build
-./gradlew publishToMavenLocal
+./gradlew :app:jsBrowserDevelopmentRun   # dev server (port 3000)
+./gradlew build                          # full build
+./gradlew publishToMavenLocal            # local maven for testing
+./gradlew publishToMavenCentral          # publish to Maven Central
 ```
 
 The demo app runs on `http://localhost:3000/`.
+
+## Publishing
+
+This project publishes to Maven Central via the [Sonatype Central Portal](https://central.sonatype.com).
+
+### Prerequisites
+
+- A verified namespace on Sonatype Central (`io.github.mahyarmlk`)
+- A GPG key pair with the public key uploaded to `keyserver.ubuntu.com` and `keys.openpgp.org`
+- A Sonatype user token for authentication
+
+### Local credentials
+
+Create `~/.gradle/gradle.properties`:
+
+```properties
+signingInMemoryKeyPassword=YOUR_GPG_PASSPHRASE
+mavenCentralUsername=YOUR_SONATYPE_TOKEN_USERNAME
+mavenCentralPassword=YOUR_SONATYPE_TOKEN_PASSWORD
+```
+
+And place your armored private key at `~/.gradle/signing-key.asc`.
+
+### Release via GitHub Actions
+
+The `.github/workflows/release.yml` workflow triggers on version tags or GitHub Releases. Add these secrets to your repo:
+
+| Secret | Value |
+|---|---|
+| `SIGNING_KEY` | Full armored PGP private key |
+| `SIGNING_PASSWORD` | GPG key passphrase |
+| `MAVEN_CENTRAL_USERNAME` | Sonatype token username |
+| `MAVEN_CENTRAL_PASSWORD` | Sonatype token password |
+
+Then create a release:
+
+```bash
+git tag v0.2.0 && git push origin v0.2.0
+```
+
+After validation on [central.sonatype.com/publishing/deployments](https://central.sonatype.com/publishing/deployments), click **Publish** to release the artifacts (propagation takes 15-30 minutes).
 
 ## Coverage
 

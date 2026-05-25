@@ -3,8 +3,6 @@ plugins {
 }
 
 repositories {
-  maven("https://maven.devneeds.ir")
-  maven("https://maven.myket.ir")
   gradlePluginPortal()
   mavenCentral()
 }
@@ -12,8 +10,8 @@ repositories {
 gradlePlugin {
   plugins {
     register("composeDaisyUiWebpack") {
-      id = "io.github.compose-daisy-ui.webpack"
-      implementationClass = "composedaisyui.gradle.ComposeDaisyUiWebpackPlugin"
+      id = "io.github.mahyarmlk.webpack"
+      implementationClass = "io.github.mahyarmlk.gradle.ComposeDaisyUiWebpackPlugin"
     }
   }
 }

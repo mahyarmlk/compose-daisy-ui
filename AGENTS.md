@@ -80,7 +80,7 @@ Full daisyUI 5 component class names and syntax are in `.agents/skills/daisyui/S
 ## Kotlin / Gradle specifics
 
 - Kotlin 2.3.20, Compose plugin 1.11.0, Gradle 9.3.1
-- Group: `io.github.compose-daisy-ui`, version `0.1.0`
+- Group: `io.github.mahyarmlk`, version `0.1.0`
 - `:compose-daisyui` depends on `:compose-daisyui-core` via `api(project(...))`
 - `:app` depends on `:compose-daisyui` via `implementation(project(...))`
 - Source sets: `jsMain` only (no `commonMain`, no `jsTest`)
