@@ -47,6 +47,18 @@ plugins.withId("signing") {
   }
 }
 
+afterEvaluate {
+  publishing {
+    publications {
+      withType<MavenPublication>().configureEach {
+        if (name == "js") {
+          pom.packaging = "jar"
+        }
+      }
+    }
+  }
+}
+
 kotlin {
   js(IR) {
     browser()
