@@ -1,0 +1,9 @@
+.gradle/
+build/
+out/
+kotlin-js-store/
+node_modules/
+**/webpack.config.d/compose-daisy-ui.generated.js
+.idea/
+local.properties
+*.iml
