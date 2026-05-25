@@ -14,6 +14,7 @@ allprojects {
 
 subprojects {
   plugins.withId("maven-publish") {
+    tasks.withType<GenerateModuleMetadata>().configureEach { enabled = false }
     extensions.configure<PublishingExtension>("publishing") {
       publications.withType<MavenPublication>().configureEach {
         pom {
