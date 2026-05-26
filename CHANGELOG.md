@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Pending changes for the next release.
+
 ## 0.1.0
 
 - Initial Kotlin/JS Compose HTML component library.

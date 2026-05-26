@@ -7,5 +7,5 @@ plugins {
 
 allprojects {
   group = "io.github.mahyarmlk"
-  version = "0.2.0"
+  version = providers.gradleProperty("VERSION_NAME").orElse("0.1.0").get()
 }

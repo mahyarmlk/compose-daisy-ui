@@ -14,7 +14,6 @@ Three-module Gradle project (Kotlin/JS, Compose HTML, daisyUI 5, Tailwind CSS 4)
 ./gradlew :app:jsBrowserDevelopmentRun   # dev server (port 3000)
 ./gradlew build                          # full build
 ./gradlew :compose-daisyui:assemble      # build component lib only
-./gradlew :compose-daisyui:checkKotlinAbi # ABI compatibility check
 ```
 
 There are no dedicated lint, typecheck, or test commands. Kotlin compilation serves as type checking. There are no test sources yet.

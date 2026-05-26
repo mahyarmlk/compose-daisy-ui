@@ -15,6 +15,8 @@ but they may still evolve as component coverage matures.
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.mahyarmlk/compose-daisyui-js)](https://central.sonatype.com/artifact/io.github.mahyarmlk/compose-daisyui-js)
 
+Demo: [mahyarmlk.github.io/compose-daisy-ui](https://mahyarmlk.github.io/compose-daisy-ui)
+
 ## Modules
 
 Available on Maven Central as `io.github.mahyarmlk:compose-daisyui-js` and `io.github.mahyarmlk:compose-daisyui-core-js`.
@@ -178,7 +180,7 @@ And place your armored private key at `~/.gradle/signing-key.asc`.
 
 ### Release via GitHub Actions
 
-The `.github/workflows/release.yml` workflow triggers on version tags or GitHub Releases. Add these secrets to your repo:
+The `.github/workflows/release.yml` workflow triggers on version tags. It publishes to Maven Central and then creates the matching GitHub Release automatically. Add these secrets to your repo:
 
 | Secret | Value |
 |---|---|
@@ -187,20 +189,15 @@ The `.github/workflows/release.yml` workflow triggers on version tags or GitHub 
 | `MAVEN_CENTRAL_USERNAME` | Sonatype token username |
 | `MAVEN_CENTRAL_PASSWORD` | Sonatype token password |
 
-Then create a release. Either push a version tag (which triggers the Maven Central workflow but doesn't create a visible GitHub Release):
+Then push a version tag:
 
 ```bash
-git tag v0.2.0 && git push origin v0.2.0
+git tag v0.1.1 && git push origin v0.1.1
 ```
 
-Or create a full GitHub Release via the CLI (which also triggers the workflow):
+The workflow passes the tag version into Gradle as `VERSION_NAME`, so local development can stay on the default version while release tags publish the intended artifact version.
 
-```bash
-git tag v0.2.0 && git push origin v0.2.0
-gh release create v0.2.0 --title "v0.2.0" --notes "release notes here"
-```
-
-Or create a release manually at `https://github.com/mahyarmlk/compose-daisy-ui/releases/new`.
+If a deployment is only in **Validated** state on Sonatype Central and should not be published, drop it from [central.sonatype.com/publishing/deployments](https://central.sonatype.com/publishing/deployments) and tag a corrected version later.
 
 After validation on [central.sonatype.com/publishing/deployments](https://central.sonatype.com/publishing/deployments), click **Publish** to release the artifacts (propagation takes 15-30 minutes).
 

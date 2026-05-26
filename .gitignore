@@ -2,6 +2,8 @@
 build/
 out/
 kotlin-js-store/
+!kotlin-js-store/
+!kotlin-js-store/package-lock.json
 node_modules/
 **/webpack.config.d/compose-daisy-ui.generated.js
 .idea/

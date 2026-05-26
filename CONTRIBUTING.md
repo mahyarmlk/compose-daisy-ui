@@ -9,7 +9,6 @@ Use the Gradle wrapper from the repository root:
 ```bash
 ./gradlew :app:jsBrowserDevelopmentRun
 ./gradlew build
-./gradlew :compose-daisyui:checkKotlinAbi
 ```
 
 There are currently no dedicated test sources. Kotlin compilation is the
@@ -26,12 +25,12 @@ primary type check until the project adds component tests.
 
 ## Publishing
 
-Release builds are configured with Gradle `maven-publish` and optional in-memory
+Release builds are configured with `com.vanniktech.maven.publish` and in-memory
 PGP signing. Publish locally first:
 
 ```bash
 ./gradlew publishToMavenLocal
 ```
 
-Real Maven Central publishing requires repository credentials and signing keys
-provided through Gradle properties or CI secrets.
+Real Maven Central publishing runs from version tags in GitHub Actions and
+requires repository credentials and signing keys provided through CI secrets.
