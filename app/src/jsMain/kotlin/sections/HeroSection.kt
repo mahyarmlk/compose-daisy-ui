@@ -122,7 +122,7 @@ private fun InstallStrip() {
         "border border-base-content/10 bg-neutral text-neutral-content shadow-xl"
     )
   }) {
-    CodeLine("1", "implementation(\"io.github.mahyarmlk:compose-daisyui-js:0.1.0\")", "text-success")
+    CodeLine("1", "implementation(\"io.github.mahyarmlk:compose-daisyui-js:0.1.1\")", "text-success")
     CodeLine("2", "@import \"tailwindcss\";", "text-info")
     CodeLine("3", "@plugin \"daisyui\";", "text-warning")
   }

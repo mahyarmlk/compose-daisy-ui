@@ -1,8 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.1.1
 
-- Pending changes for the next release.
+- Added custom content support to the high-level `Link` component.
+- Fixed the demo footer version badge for the next patch release.
 
 ## 0.1.0
 

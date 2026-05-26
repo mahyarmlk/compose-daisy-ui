@@ -5,11 +5,12 @@ import composedaisyui.*
 import org.jetbrains.compose.web.attributes.href
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.AttrBuilderContext
+import org.jetbrains.compose.web.dom.ContentBuilder
 import org.jetbrains.compose.web.dom.Text
 import org.w3c.dom.HTMLAnchorElement
 
 /**
- * A styled anchor link with optional color and hover variant.
+ * A styled anchor link with optional color, hover variant, and custom content.
  *
  * @see <a href="https://daisyui.com/components/link/">daisyUI Link docs</a>
  *
@@ -18,14 +19,16 @@ import org.w3c.dom.HTMLAnchorElement
  * @param color Optional semantic color.
  * @param variant The link style variant.
  * @param attrs Additional HTML attributes.
+ * @param content Optional custom link content. When omitted, [text] is rendered.
  */
 @Composable
 public fun Link(
-  text: String,
+  text: String? = null,
   href: String,
   color: UiColor? = null,
   variant: LinkVariant = LinkVariant.Default,
-  attrs: AttrBuilderContext<HTMLAnchorElement>? = null
+  attrs: AttrBuilderContext<HTMLAnchorElement>? = null,
+  content: ContentBuilder<HTMLAnchorElement>? = null
 ) {
   A(attrs = {
     daisy(
@@ -35,5 +38,11 @@ public fun Link(
     )
     href(href)
     attrs?.invoke(this)
-  }) { Text(text) }
+  }) {
+    if (content != null) {
+      content(this)
+    } else {
+      text?.let { Text(it) }
+    }
+  }
 }

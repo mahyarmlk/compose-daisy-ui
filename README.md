@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-  implementation("io.github.mahyarmlk:compose-daisyui-js:0.1.0")
+  implementation("io.github.mahyarmlk:compose-daisyui-js:0.1.1")
 }
 ```
 
@@ -38,7 +38,7 @@ Use `compose-daisyui-core-js` when you only want tokens, themes, CSS helpers, an
 
 ```kotlin
 dependencies {
-  implementation("io.github.mahyarmlk:compose-daisyui-core-js:0.1.0")
+  implementation("io.github.mahyarmlk:compose-daisyui-core-js:0.1.1")
 }
 ```
 
@@ -195,7 +195,7 @@ Then push a version tag:
 git tag v0.1.1 && git push origin v0.1.1
 ```
 
-The workflow passes the tag version into Gradle as `VERSION_NAME`, so local development can stay on the default version while release tags publish the intended artifact version.
+The workflow passes the tag version into Gradle as `composeDaisyUiVersion`, so local development can stay on the default version while release tags publish the intended artifact version.
 
 If a deployment is only in **Validated** state on Sonatype Central and should not be published, drop it from [central.sonatype.com/publishing/deployments](https://central.sonatype.com/publishing/deployments) and tag a corrected version later.
 

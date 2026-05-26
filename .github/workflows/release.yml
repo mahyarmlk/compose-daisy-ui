@@ -37,7 +37,7 @@ jobs:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
 
       - name: Publish to Maven Central
-        run: ./gradlew publishToMavenCentral --no-configuration-cache -PVERSION_NAME=${{ steps.version.outputs.version }}
+        run: ./gradlew publishToMavenCentral --no-configuration-cache -PcomposeDaisyUiVersion=${{ steps.version.outputs.version }}
         env:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}

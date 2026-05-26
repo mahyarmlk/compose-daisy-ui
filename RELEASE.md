@@ -10,8 +10,8 @@ matching GitHub Release automatically from version tags.
 ./gradlew publishToMavenLocal
 ```
 
-The local default version is `0.1.0`. Release builds pass the tag version into
-Gradle as `VERSION_NAME`, for example `-PVERSION_NAME=0.1.1`.
+The local default version is the latest intended release. Release builds pass the tag version into
+Gradle as `composeDaisyUiVersion`, for example `-PcomposeDaisyUiVersion=0.1.1`.
 
 ## Maven Central
 

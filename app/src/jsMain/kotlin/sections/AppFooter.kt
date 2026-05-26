@@ -48,7 +48,7 @@ public fun AppFooter() {
       Div({ tw("flex items-center gap-3") }) {
         Span({ tw("text-lg font-bold text-primary") }) { Text("Compose daisyUI") }
         Badge(
-          text = "v1.0",
+          text = "v0.1.1",
           variant = UiVariant.Soft,
           size = UiSize.Sm,
           color = UiColor.Primary
