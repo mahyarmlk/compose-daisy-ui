@@ -8,6 +8,7 @@ import composedaisyui.UiVariant
 import composedaisyui.actions.Button
 import composedaisyui.app.TopAppBar
 import composedaisyui.tw
+import kotlinx.browser.window
 import org.jetbrains.compose.web.attributes.selected
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Option
@@ -18,7 +19,9 @@ import org.jetbrains.compose.web.dom.Text
 @Composable
 public fun AppNavBar(
   currentTheme: DaisyTheme,
-  onThemeChange: (DaisyTheme) -> Unit
+  currentPage: AppPage,
+  onThemeChange: (DaisyTheme) -> Unit,
+  onNavigate: (AppPage) -> Unit
 ) {
   TopAppBar(
     title = "Compose daisyUI",
@@ -41,14 +44,16 @@ public fun AppNavBar(
       ThemePicker(currentTheme = currentTheme, onThemeChange = onThemeChange)
       Button(
         text = "Documentation",
-        variant = UiVariant.Ghost,
+        variant = if (currentPage == AppPage.Docs) UiVariant.Soft else UiVariant.Ghost,
         size = UiSize.Sm,
-        color = UiColor.Neutral
+        color = UiColor.Neutral,
+        onClick = { onNavigate(AppPage.Docs) }
       )
       Button(
         text = "GitHub",
         variant = UiVariant.Ghost,
-        size = UiSize.Sm
+        size = UiSize.Sm,
+        onClick = { window.location.href = "https://github.com/mahyarmlk/compose-daisy-ui" }
       )
     }
   )
@@ -88,3 +93,8 @@ private val DemoThemes = listOf(
   DaisyTheme.Corporate,
   DaisyTheme.Synthwave
 )
+
+public enum class AppPage {
+  Home,
+  Docs
+}
