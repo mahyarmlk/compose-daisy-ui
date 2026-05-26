@@ -25,7 +25,7 @@ public fun FeaturesSection() {
       H2({ tw("text-4xl font-extrabold tracking-tight") }) {
         Text("Everything you need")
       }
-      P({ tw("mt-4 text-lg text-base-content/50 max-w-2xl mx-auto leading-relaxed") }) {
+      P({ tw("mt-4 text-lg text-base-content/75 max-w-2xl mx-auto leading-relaxed") }) {
         Text("Build modern, themeable web UIs with Kotlin — no JavaScript required.")
       }
     }
@@ -89,7 +89,7 @@ private fun FeatureCard(
         }
         Div({ tw("flex-1 min-w-0") }) {
           H3({ tw("text-lg font-semibold mb-1.5") }) { Text(title) }
-          P({ tw("text-sm text-base-content/60 leading-relaxed") }) {
+          P({ tw("text-sm text-base-content/75 leading-relaxed") }) {
             Text(description)
           }
         }

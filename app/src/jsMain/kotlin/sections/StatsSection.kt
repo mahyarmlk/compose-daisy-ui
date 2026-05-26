@@ -22,7 +22,7 @@ public fun StatsSection() {
         H2({ tw("text-4xl font-extrabold tracking-tight") }) {
           Text("Trusted by developers")
         }
-        P({ tw("mt-4 text-lg text-base-content/50 max-w-xl mx-auto leading-relaxed") }) {
+        P({ tw("mt-4 text-lg text-base-content/75 max-w-xl mx-auto leading-relaxed") }) {
           Text("Compose daisyUI brings a comprehensive set of UI primitives to the Kotlin ecosystem.")
         }
       }

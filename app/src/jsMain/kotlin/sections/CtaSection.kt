@@ -26,14 +26,14 @@ public fun CtaSection() {
         H3({ tw("text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight") }) {
           Text("Ready to build something great?")
         }
-        P({ tw("text-lg text-primary-content/70 max-w-2xl leading-relaxed") }) {
+        P({ tw("text-lg text-primary-content/85 max-w-2xl leading-relaxed") }) {
           Text("Add Compose daisyUI to your Kotlin/JS project and start building beautiful, themeable UIs in minutes.")
         }
         Div({ tw("flex gap-4 flex-wrap justify-center pt-4") }) {
           Button(
             text = "Get Started",
-            color = UiColor.Primary,
-            size = UiSize.Lg
+            size = UiSize.Lg,
+            attrs = { tw("bg-primary-content text-primary border-primary-content hover:bg-primary-content/90") }
           )
           Button(
             text = "View on GitHub",
@@ -42,7 +42,7 @@ public fun CtaSection() {
             attrs = { tw("border-primary-content/30 hover:border-primary-content") }
           )
         }
-        Div({ tw("flex gap-6 text-sm text-primary-content/40 pt-4") }) {
+        Div({ tw("flex gap-6 text-sm text-primary-content/80 pt-4") }) {
           A("/compose-daisy-ui/LICENSE", { tw("link link-hover") }) {
             Text("Apache-2.0 License")
           }

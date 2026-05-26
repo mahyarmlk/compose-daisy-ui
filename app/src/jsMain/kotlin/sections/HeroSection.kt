@@ -81,7 +81,7 @@ private fun HeroCopy() {
 
     P({
       tw(
-        "max-w-2xl text-base leading-7 text-base-content/70 " +
+        "max-w-2xl text-base leading-7 text-base-content/80 " +
           "sm:text-lg lg:text-xl lg:leading-8"
       )
     }) {
@@ -109,7 +109,8 @@ private fun CtaButtons() {
       text = "View Components",
       variant = UiVariant.Outline,
       color = UiColor.Neutral,
-      size = UiSize.Lg
+      size = UiSize.Lg,
+      attrs = { tw("border-base-content/30 text-base-content hover:bg-base-content hover:text-base-100") }
     )
   }
 }
@@ -122,9 +123,9 @@ private fun InstallStrip() {
         "border border-base-content/10 bg-neutral text-neutral-content shadow-xl"
     )
   }) {
-    CodeLine("1", "implementation(\"io.github.mahyarmlk:compose-daisyui-js:0.1.1\")", "text-success")
-    CodeLine("2", "@import \"tailwindcss\";", "text-info")
-    CodeLine("3", "@plugin \"daisyui\";", "text-warning")
+    CodeLine("1", "implementation(\"io.github.mahyarmlk:compose-daisyui-js:0.1.1\")", "text-neutral-content")
+    CodeLine("2", "@import \"tailwindcss\";", "text-neutral-content")
+    CodeLine("3", "@plugin \"daisyui\";", "text-neutral-content")
   }
 }
 
@@ -156,7 +157,7 @@ private fun ProofRow() {
 private fun ProofMetric(value: String, label: String) {
   Div({ tw("px-4 py-3") }) {
     Div({ tw("text-xl font-black text-base-content sm:text-2xl") }) { Text(value) }
-    Div({ tw("text-xs font-semibold uppercase text-base-content/50") }) { Text(label) }
+    Div({ tw("text-xs font-semibold uppercase text-base-content/70") }) { Text(label) }
   }
 }
 
@@ -174,7 +175,7 @@ private fun ProductPreview() {
       )
     }) {
       Div({ tw("mockup-browser-toolbar") }) {
-        Div({ tw("input border-base-content/10 bg-base-100 text-base-content/60") }) {
+        Div({ tw("input border-base-content/10 bg-base-100 text-base-content/75") }) {
           Text("compose-daisy-ui.dev/components")
         }
       }
@@ -192,7 +193,7 @@ private fun PreviewToolbar() {
   Div({ tw("mb-5 flex items-center justify-between gap-4") }) {
     Div {
       Div({ tw("text-sm font-bold text-base-content") }) { Text("Component preview") }
-      Div({ tw("text-xs text-base-content/50") }) { Text("Typed Compose wrappers over daisyUI classes") }
+      Div({ tw("text-xs text-base-content/70") }) { Text("Typed Compose wrappers over daisyUI classes") }
     }
     Div({ tw("join") }) {
       Div({ tw("btn btn-xs join-item btn-primary") }) { Text("Light") }
@@ -214,7 +215,7 @@ private fun PreviewShowcase() {
         }
         Div {
           Div({ tw("font-bold") }) { Text("Themeable card") }
-          Div({ tw("text-sm text-base-content/55") }) { Text("Semantic color tokens") }
+          Div({ tw("text-sm text-base-content/70") }) { Text("Semantic color tokens") }
         }
       }
       Div({ tw("flex flex-wrap gap-2") }) {
@@ -239,7 +240,7 @@ private fun PreviewShowcase() {
 @Composable
 private fun PreviewStat(label: String, value: String) {
   Div({ tw("rounded-box border border-base-content/10 bg-base-100 p-3 shadow-sm") }) {
-    Div({ tw("text-xs font-semibold uppercase text-base-content/45") }) { Text(label) }
+    Div({ tw("text-xs font-semibold uppercase text-base-content/70") }) { Text(label) }
     Div({ tw("text-sm font-bold text-base-content") }) { Text(value) }
   }
 }

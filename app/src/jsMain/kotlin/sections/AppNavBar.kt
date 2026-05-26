@@ -68,7 +68,7 @@ private fun ThemePicker(
       }
     }
   }) {
-    DaisyTheme.entries.forEach { theme ->
+    DemoThemes.forEach { theme ->
       Option(value = theme.themeName, attrs = {
         if (theme == currentTheme) selected()
       }) {
@@ -77,3 +77,14 @@ private fun ThemePicker(
     }
   }
 }
+
+private val DemoThemes = listOf(
+  DaisyTheme.Light,
+  DaisyTheme.Dark,
+  DaisyTheme.Night,
+  DaisyTheme.Retro,
+  DaisyTheme.Cupcake,
+  DaisyTheme.Emerald,
+  DaisyTheme.Corporate,
+  DaisyTheme.Synthwave
+)
