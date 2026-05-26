@@ -13,15 +13,20 @@ import org.w3c.dom.HTMLDivElement
  * @see <a href="https://daisyui.com/components/stat/">daisyUI Stats docs</a>
  *
  * @param items The list of stat items to display.
+ * @param orientation Optional layout direction. Defaults to daisyUI's horizontal layout.
  * @param attrs Additional HTML attributes.
  */
 @Composable
 public fun Stats(
   items: List<StatItem>,
+  orientation: UiOrientation? = null,
   attrs: AttrBuilderContext<HTMLDivElement>? = null
 ) {
   Div(attrs = {
-    daisy(Daisy.Data.Stats)
+    daisy(
+      Daisy.Data.Stats,
+      orientation?.let { direction("stats", it.toDaisyDirection()) }
+    )
     attrs?.invoke(this)
   }) {
     items.forEach { item ->

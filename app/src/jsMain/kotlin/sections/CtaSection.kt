@@ -16,9 +16,7 @@ import org.jetbrains.compose.web.dom.Text
 @Composable
 public fun CtaSection() {
   Div({ tw("py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto") }) {
-    Div({ tw("relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-secondary text-primary-content p-12 sm:p-16 lg:p-20 text-center shadow-xl") }) {
-      Div({ tw("absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_30%_20%,white,transparent)]") }) {}
-
+    Div({ tw("rounded-box bg-primary text-primary-content p-10 sm:p-14 lg:p-16 text-center shadow-xl") }) {
       Div({ tw("relative z-10 flex flex-col items-center gap-6") }) {
         Div({ tw("mb-2") }) {
           Span({ tw("badge badge-outline border-primary-content/30 text-primary-content/80 text-xs font-semibold") }) {
@@ -45,16 +43,16 @@ public fun CtaSection() {
           )
         }
         Div({ tw("flex gap-6 text-sm text-primary-content/40 pt-4") }) {
-          A("#", { tw("link link-hover") }) {
-            Text("MIT License")
+          A("/compose-daisy-ui/LICENSE", { tw("link link-hover") }) {
+            Text("Apache-2.0 License")
           }
           Span { Text("·") }
-          A("#", { tw("link link-hover") }) {
-            Text("npm Package")
+          A("https://central.sonatype.com/artifact/io.github.mahyarmlk/compose-daisyui-js", { tw("link link-hover") }) {
+            Text("Maven Central")
           }
           Span { Text("·") }
-          A("#", { tw("link link-hover") }) {
-            Text("Gradle Plugin")
+          A("https://github.com/mahyarmlk/compose-daisy-ui", { tw("link link-hover") }) {
+            Text("GitHub")
           }
         }
       }

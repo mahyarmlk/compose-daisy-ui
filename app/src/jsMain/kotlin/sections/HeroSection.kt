@@ -16,7 +16,7 @@ import org.jetbrains.compose.web.dom.Text
 public fun HeroSection() {
   Div({
     tw(
-      "relative isolate flex-1 min-h-0 overflow-hidden " +
+      "relative isolate min-h-[calc(100svh-8rem)] overflow-hidden " +
         "bg-base-100 text-base-content"
     )
   }) {
@@ -24,7 +24,7 @@ public fun HeroSection() {
 
     Div({
       tw(
-        "relative z-10 grid h-full w-full max-w-7xl mx-auto " +
+        "relative z-10 grid min-h-[calc(100svh-8rem)] w-full max-w-7xl mx-auto " +
           "grid-cols-1 xl:grid-cols-[minmax(0,1.02fr)_minmax(430px,0.98fr)] " +
           "items-center gap-6 px-5 py-8 sm:px-8 sm:py-10 lg:px-10"
       )

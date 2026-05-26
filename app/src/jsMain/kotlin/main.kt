@@ -7,8 +7,12 @@ import composedaisyui.DaisyTheme
 import composedaisyui.tw
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.renderComposable
+import sections.AppFooter
 import sections.AppNavBar
+import sections.CtaSection
+import sections.FeaturesSection
 import sections.HeroSection
+import sections.StatsSection
 
 fun main() {
   renderComposable(rootElementId = "root") {
@@ -22,9 +26,15 @@ private fun App() {
 
   Div({
     attr("data-theme", theme.themeName)
-    tw("h-screen flex flex-col overflow-hidden")
+    tw("min-h-screen bg-base-100 text-base-content")
   }) {
     AppNavBar(currentTheme = theme, onThemeChange = { theme = it })
-    HeroSection()
+    Div({ attr("role", "main") }) {
+      HeroSection()
+      FeaturesSection()
+      StatsSection()
+      CtaSection()
+    }
+    AppFooter()
   }
 }
