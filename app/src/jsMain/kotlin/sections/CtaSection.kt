@@ -1,11 +1,8 @@
 package sections
 
 import androidx.compose.runtime.Composable
-import composedaisyui.UiColor
-import composedaisyui.UiSize
-import composedaisyui.UiVariant
-import composedaisyui.actions.Button
 import composedaisyui.tw
+import org.jetbrains.compose.web.attributes.href
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H3
@@ -30,17 +27,18 @@ public fun CtaSection() {
           Text("Add Compose daisyUI to your Kotlin/JS project and start building beautiful, themeable UIs in minutes.")
         }
         Div({ tw("flex gap-4 flex-wrap justify-center pt-4") }) {
-          Button(
-            text = "Get Started",
-            size = UiSize.Lg,
-            attrs = { tw("bg-primary-content text-primary border-primary-content hover:bg-primary-content/90") }
-          )
-          Button(
-            text = "View on GitHub",
-            variant = UiVariant.Outline,
-            size = UiSize.Lg,
-            attrs = { tw("border-primary-content/30 hover:border-primary-content") }
-          )
+          A(attrs = {
+            href("#docs")
+            tw("btn btn-lg bg-primary-content text-primary border-primary-content hover:bg-primary-content/90")
+          }) {
+            Text("Get Started")
+          }
+          A(attrs = {
+            href("https://github.com/mahyarmlk/compose-daisy-ui")
+            tw("btn btn-outline btn-lg border-primary-content/30 hover:border-primary-content")
+          }) {
+            Text("View on GitHub")
+          }
         }
         Div({ tw("flex gap-6 text-sm text-primary-content/80 pt-4") }) {
           A("/compose-daisy-ui/LICENSE", { tw("link link-hover") }) {

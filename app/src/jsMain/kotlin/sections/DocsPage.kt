@@ -49,6 +49,12 @@ public fun DocsPage() {
 private fun DocsHero() {
   Div({ tw("border-b border-base-300 bg-base-200") }) {
     Div({ tw("mx-auto flex max-w-7xl flex-col gap-6 px-5 py-12 sm:px-8 lg:px-10") }) {
+      A(attrs = {
+        href("#")
+        tw("btn btn-ghost btn-sm w-fit -ml-3")
+      }) {
+        Text("Back to home")
+      }
       Div({ tw("flex flex-wrap items-center gap-2") }) {
         Badge(text = "Docs", color = UiColor.Primary, variant = UiVariant.Soft)
         Badge(text = "Kotlin/JS", color = UiColor.Neutral, variant = UiVariant.Outline)
@@ -288,17 +294,70 @@ private fun InfoCard(title: String, body: String) {
 private fun DocsCode(vararg lines: String) {
   Div({
     tw(
-      "mockup-code my-4 overflow-x-auto border border-base-content/10 " +
-        "bg-neutral text-neutral-content"
+      "my-4 overflow-hidden rounded-box border border-base-content/10 " +
+        "bg-neutral text-neutral-content shadow-sm"
     )
   }) {
-    lines.forEachIndexed { index, line ->
-      Div({
-        attr("data-prefix", if (line.isEmpty()) " " else (index + 1).toString())
-        tw("text-neutral-content")
-      }) {
-        Text(line.ifEmpty { " " })
+    Div({ tw("flex items-center gap-2 border-b border-neutral-content/10 px-5 py-3") }) {
+      Div({ tw("h-2.5 w-2.5 rounded-full bg-error") }) {}
+      Div({ tw("h-2.5 w-2.5 rounded-full bg-warning") }) {}
+      Div({ tw("h-2.5 w-2.5 rounded-full bg-success") }) {}
+    }
+    Div({ tw("overflow-x-auto py-3") }) {
+      lines.forEachIndexed { index, line ->
+        CodeRow(index = index + 1, line = line)
       }
+    }
+  }
+}
+
+@Composable
+private fun CodeRow(index: Int, line: String) {
+  Div({
+    tw(
+      "grid min-w-max grid-cols-[2.75rem_minmax(32rem,1fr)] gap-4 " +
+        "px-5 py-1 font-mono text-sm leading-6"
+    )
+  }) {
+    Div({ tw("select-none text-right text-neutral-content/40") }) {
+      Text(if (line.isEmpty()) " " else index.toString())
+    }
+    Div({ tw("whitespace-pre text-neutral-content") }) {
+      HighlightedCode(line.ifEmpty { " " })
+    }
+  }
+}
+
+@Composable
+private fun HighlightedCode(line: String) {
+  val quoted = line.split("\"")
+  quoted.forEachIndexed { index, segment ->
+    if (index % 2 == 1) {
+      Span({ tw("text-success") }) { Text("\"$segment\"") }
+    } else {
+      HighlightCodeSegment(segment)
+    }
+  }
+}
+
+@Composable
+private fun HighlightCodeSegment(segment: String) {
+  val tokens = segment.split(Regex("(?<=[(){}=,; ])|(?=[(){}=,; ])"))
+  tokens.forEach { token ->
+    when {
+      token in setOf("implementation", "npm", "remember", "mutableStateOf") ->
+        Span({ tw("text-info") }) { Text(token) }
+      token in setOf("var", "by") ->
+        Span({ tw("text-secondary") }) { Text(token) }
+      token.startsWith("@") ->
+        Span({ tw("text-accent") }) { Text(token) }
+      token in setOf("Button", "Div", "AppNavBar", "DaisyTheme", "UiColor", "UiSize", "UiVariant") ->
+        Span({ tw("text-primary") }) { Text(token) }
+      token in setOf("text", "color", "size", "variant", "attr", "tw", "currentTheme", "onThemeChange", "themeName") ->
+        Span({ tw("text-warning") }) { Text(token) }
+      token in setOf("Primary", "Lg", "Solid", "Night") ->
+        Span({ tw("text-success") }) { Text(token) }
+      else -> Text(token)
     }
   }
 }

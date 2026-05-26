@@ -1,11 +1,9 @@
 package sections
 
 import androidx.compose.runtime.Composable
-import composedaisyui.UiColor
-import composedaisyui.UiSize
-import composedaisyui.UiVariant
-import composedaisyui.actions.Button
 import composedaisyui.tw
+import org.jetbrains.compose.web.attributes.href
+import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.P
@@ -100,18 +98,18 @@ private fun HeroCopy() {
 @Composable
 private fun CtaButtons() {
   Div({ tw("flex flex-wrap items-center gap-3") }) {
-    Button(
-      text = "Get Started",
-      color = UiColor.Primary,
-      size = UiSize.Lg
-    )
-    Button(
-      text = "View Components",
-      variant = UiVariant.Outline,
-      color = UiColor.Neutral,
-      size = UiSize.Lg,
-      attrs = { tw("border-base-content/30 text-base-content hover:bg-base-content hover:text-base-100") }
-    )
+    A(attrs = {
+      href("#docs")
+      tw("btn btn-primary btn-lg")
+    }) {
+      Text("Get Started")
+    }
+    A(attrs = {
+      href("#components")
+      tw("btn btn-outline btn-neutral btn-lg border-base-content/30 text-base-content hover:bg-base-content hover:text-base-100")
+    }) {
+      Text("View Components")
+    }
   }
 }
 
@@ -119,23 +117,48 @@ private fun CtaButtons() {
 private fun InstallStrip() {
   Div({
     tw(
-      "mockup-code w-full max-w-2xl overflow-hidden " +
-        "border border-base-content/10 bg-neutral text-neutral-content shadow-xl"
+      "w-full max-w-2xl overflow-hidden rounded-box border border-base-content/10 " +
+        "bg-neutral text-neutral-content shadow-xl"
     )
   }) {
-    CodeLine("1", "implementation(\"io.github.mahyarmlk:compose-daisyui-js:0.1.1\")", "text-neutral-content")
-    CodeLine("2", "@import \"tailwindcss\";", "text-neutral-content")
-    CodeLine("3", "@plugin \"daisyui\";", "text-neutral-content")
+    Div({ tw("flex items-center gap-2 border-b border-neutral-content/10 px-5 py-3") }) {
+      Div({ tw("h-2.5 w-2.5 rounded-full bg-error") }) {}
+      Div({ tw("h-2.5 w-2.5 rounded-full bg-warning") }) {}
+      Div({ tw("h-2.5 w-2.5 rounded-full bg-success") }) {}
+    }
+    Div({ tw("overflow-x-auto py-3") }) {
+      InstallCodeLine("1") {
+        Span({ tw("text-info") }) { Text("implementation") }
+        Text("(")
+        Span({ tw("text-success") }) { Text("\"io.github.mahyarmlk:compose-daisyui-js:0.1.1\"") }
+        Text(")")
+      }
+      InstallCodeLine("2") {
+        Span({ tw("text-accent") }) { Text("@import") }
+        Text(" ")
+        Span({ tw("text-success") }) { Text("\"tailwindcss\"") }
+        Text(";")
+      }
+      InstallCodeLine("3") {
+        Span({ tw("text-accent") }) { Text("@plugin") }
+        Text(" ")
+        Span({ tw("text-success") }) { Text("\"daisyui\"") }
+        Text(";")
+      }
+    }
   }
 }
 
 @Composable
-private fun CodeLine(prefix: String, value: String, colorClass: String) {
+private fun InstallCodeLine(index: String, content: @Composable () -> Unit) {
   Div({
-    attr("data-prefix", prefix)
-    tw(colorClass)
+    tw(
+      "grid min-w-max grid-cols-[2.75rem_minmax(32rem,1fr)] gap-4 " +
+        "px-5 py-1 font-mono text-sm leading-6"
+    )
   }) {
-    Text(value)
+    Div({ tw("select-none text-right text-neutral-content/40") }) { Text(index) }
+    Div({ tw("whitespace-pre text-neutral-content") }) { content() }
   }
 }
 

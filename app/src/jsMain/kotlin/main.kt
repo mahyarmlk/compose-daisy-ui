@@ -1,10 +1,12 @@
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import composedaisyui.DaisyTheme
 import composedaisyui.tw
+import kotlinx.browser.window
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.renderComposable
 import sections.AppFooter
@@ -24,8 +26,17 @@ fun main() {
 
 @Composable
 private fun App() {
-  var theme by remember { mutableStateOf(DaisyTheme.Night) }
-  var page by remember { mutableStateOf(AppPage.Home) }
+  var theme by remember { mutableStateOf(DaisyTheme.Emerald) }
+  var page by remember { mutableStateOf(pageFromHash()) }
+
+  DisposableEffect(Unit) {
+    val listener: (org.w3c.dom.events.Event) -> Unit = {
+      page = pageFromHash()
+      window.setTimeout({ window.scrollTo(0.0, 0.0) }, 0)
+    }
+    window.addEventListener("hashchange", listener)
+    onDispose { window.removeEventListener("hashchange", listener) }
+  }
 
   Div({
     attr("data-theme", theme.themeName)
@@ -34,8 +45,7 @@ private fun App() {
     AppNavBar(
       currentTheme = theme,
       currentPage = page,
-      onThemeChange = { theme = it },
-      onNavigate = { page = it }
+      onThemeChange = { theme = it }
     )
     Div({ attr("role", "main") }) {
       when (page) {
@@ -51,3 +61,6 @@ private fun App() {
     AppFooter()
   }
 }
+
+private fun pageFromHash(): AppPage =
+  if (window.location.hash == "#docs") AppPage.Docs else AppPage.Home

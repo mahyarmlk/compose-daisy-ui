@@ -17,7 +17,10 @@ import org.jetbrains.compose.web.dom.Text
 
 @Composable
 public fun FeaturesSection() {
-  Div({ tw("py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto") }) {
+  Div({
+    attr("id", "components")
+    tw("scroll-mt-24 py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto")
+  }) {
     Div({ tw("text-center mb-16") }) {
       Div({ tw("mb-4") }) {
         Span({ tw("badge badge-ghost badge-sm") }) { Text("Why Compose daisyUI?") }
